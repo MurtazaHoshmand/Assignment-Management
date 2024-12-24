@@ -1,43 +1,38 @@
+import AssignmentCreate from "./AssignmentCreate.js";
 import AssignmentList from "./AssignmentList.js";
 
 export default {
-  components: { AssignmentList },
+  components: { AssignmentList, AssignmentCreate },
   template: `
   <section class="space-y-6">
-  <h1>Assignments</h1>
-      <assignment-list title="In Progress" v-bind:assignments="filters.inprogress"> </assignment-list>
-      <assignment-list title="Completed" :assignments="filters.completed"> </assignment-list>      
-      <form @submit.prevent ="handleSubmit">
-        <div class="border border-gray-600 text-black">
-          <input v-model="newAssignment" placeholder="New Assignment..." class="p2">
-          <button type="submit" placeholder="New Assignment..." class="p2 bg-white border-l">Add</button>
-          </div>
-          </form>
-    
-      </section> 
-      `,
+    <h1>Assignments</h1>
+    <assignment-list title="In Progress" v-bind:assignments="filters.inprogress"> </assignment-list>
+    <assignment-list title="Completed" :assignments="filters.completed"> </assignment-list>      
+    <assignment-create @add="add"></assignment-create>
+  </section> 
+  `,
+
   methods: {
-    handleSubmit(e) {
-      e.preventDefault();
+    add(name) {
       this.assignments.push({
-        name: this.newAssignment,
+        name: name,
         completed: false,
-        id: this.newAssignment.length + 1,
+        id: this.assignments.length + 1,
       });
-      this.newAssignment = "";
     },
   },
 
   data() {
     return {
       assignments: [
-        { name: "Do HomeWork", completed: false, id: 1 },
-        { name: "Have Fun", completed: false, id: 2 },
-        { name: "Learn Vue.js", completed: false, id: 3 },
+        { name: "Do HomeWork", completed: false, id: 1, tag: "math" },
+        { name: "Have Fun", completed: false, id: 2, tag: "reading" },
+        { name: "Learn Vue.js", completed: false, id: 3, tag: "science" },
+        { name: "Think Beautiful", completed: false, id: 3, tag: "science" },
       ],
-      newAssignment: "",
     };
   },
+
   computed: {
     filters() {
       return {
