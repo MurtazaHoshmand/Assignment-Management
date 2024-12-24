@@ -27,7 +27,7 @@ export default {
       assignments: [
         { name: "Do HomeWork", completed: false, id: 1, tag: "math" },
         { name: "Have Fun", completed: false, id: 2, tag: "reading" },
-        { name: "Learn Vue.js", completed: false, id: 3, tag: "science" },
+        { name: "Learn Vue.js", completed: false, id: 4, tag: "science" },
         { name: "Think Beautiful", completed: false, id: 3, tag: "science" },
       ],
     };
